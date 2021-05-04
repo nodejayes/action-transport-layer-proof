@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {TransportService} from './transport.service';
 
 @NgModule({
   declarations: [
@@ -15,4 +16,9 @@ import { AppComponent } from './app.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private transport: TransportService) {
+    transport.init('ws://localhost:3001/ws');
+    transport.connect().then();
+  }
+}
